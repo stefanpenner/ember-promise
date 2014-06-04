@@ -1,36 +1,23 @@
-starter-kit
-===========
+Make RSVP.Promise bindable/observable
+======================================
 
-A starter kit for Ember
+Without PromiseProxy
+--------------------
+this is an experiment, don't actually use this
 
-Your Ember.js project is almost ready! Here's how to get started:
 
-- Start writing your app in js/app.js.
+No PromiseProxy needed, and promise.get/promise.set don't work which prevents users from unleashing zalgo.
 
-- Describe your application HTML in index.html.
+get/set can be re-introuced but as promise returning zalgo proof functions
 
-- During development, you can link to js/libs/ember-*.js to get the
-  unminified version of Ember.js.
+also, deep get/set chains like get('foo.bar.baz') should work, and bridge multiple promise e.g ember-data relationships. For this to work correctly, they must work like chains where if any node in the chain changes, the final promise represents the updated value (until it fullfills the first time.)
 
-- Add CSS to css/style.css
+why?
 
-- Open index.html in your browser
+because!
 
-Tests
-=====
+Actually, the PromiseProxy experiment seems to have been successful. But it's a hack. So rather then having to wrap each promise in a promise proxy to enable binding, what if the raw promise just behaved as good citizen.
 
-This starter kit comes with an integration test sample, written for QUnit runner. 
+PromiseProxy makes it easy to run into zalgo problems, as get/set work if and only if the promise has fulfilled
 
-You can run the tests by opening the `index.html?test` page in your browser.
-
-The test is located in the `tests/tests.js` file. You can see how such an 
-integration test should be written, using QUnit assertions and ember-testing helpers.
-
-For more information about ember-testing package see [ember-testing](http://emberjs.com/guides/testing/integration/)
-
-For more information about the QUnit testing framework, see [QUnit](http://qunitjs.com/)
-
-Contact
-====
-
-www.emberjs.com
+We can do better
